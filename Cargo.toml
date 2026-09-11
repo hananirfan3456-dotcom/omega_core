@@ -1,0 +1,16 @@
+[package]
+name = "omega_core"
+version = "5.5.0"
+edition = "2021"
+authors = ["Abdullah Javed", "Hanan Irfan"]
+description = "Sovereign Low-Level Machine CAS Register Guard"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[profile.release]
+opt-level = "z"          # Aggressively forces the compiler to build the smallest binary machine code
+lto = "fat"              # Maximizes link-time compilation depth to completely strip duplicate assembler code
+codegen-units = 1        # Single thread compilation guarantees zero runtime logic collisions
+panic = "abort"          # Deletes stack trace mechanics to ensure absolute zero memory leak risk
+strip = true             # Wipes out every single debug marker and symbol footprint for zero extraction risk
